@@ -9,10 +9,10 @@ const mocksTasks = [
   }, {
     id: crypto.randomUUID(),
     name: "Run 10km",
-    completed:false
+    completed:true
   }, {
     id: crypto.randomUUID(),
-    name: "",
+    name: "Buy coffee",
     completed:false
   }
 ]
