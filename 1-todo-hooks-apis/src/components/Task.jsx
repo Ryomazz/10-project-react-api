@@ -2,11 +2,15 @@ import { useTodoContext } from "../AppContext";
 import "./Task.css";
 
 function Task() {
-   const { tasks, handleDelete, handleComplete } = useTodoContext();
+   const { tasks, handleDelete, handleComplete, isFiltered } = useTodoContext();
+   const filteredTask = isFiltered
+      ? tasks.filter((task) => task.completed === true)
+      : tasks;
+
    return (
       <>
-         {tasks && tasks.length
-            ? tasks.map((task) => {
+         {filteredTask && filteredTask.length
+            ? filteredTask.map((task) => {
                  const { id, name, completed } = task;
                  return (
                     <article

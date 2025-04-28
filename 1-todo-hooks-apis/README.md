@@ -14,3 +14,4 @@
 -  Implementar el localStorage para la persistencia de datos ✔️
 -  Separar la logica y el reducer ✔️
 -  Implementar los estilos para cuando se complete una tarea ✔️
+-  Implementar los filtros por tareas completadas ✔️

@@ -34,6 +34,7 @@ function AppContext({ children }) {
       JSON.parse(localStorage.getItem("tasksLS"))
    );
    const [taskName, setTaskName] = useState("");
+   const [isFiltered, setIsFiltered] = useState(false);
 
    useEffect(() => {
       localStorage.setItem("tasksLS", JSON.stringify(tasks));
@@ -61,6 +62,8 @@ function AppContext({ children }) {
             handleComplete,
             taskName,
             setTaskName,
+            isFiltered,
+            setIsFiltered,
          }}
       >
          {children}
