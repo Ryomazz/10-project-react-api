@@ -5,22 +5,17 @@ import { useTodoContext } from "./AppContext";
 
 function App() {
    const [taskName, setTaskName] = useState("");
-   const { tasks, setTasks } = useTodoContext();
+   const { tasks, dispatch } = useTodoContext();
 
    const handleAdd = (e) => {
       e.preventDefault();
-      const newTask = {
-         id: crypto.randomUUID(),
-         name: taskName,
-         completed: false,
-      };
-      setTasks([...tasks, newTask]);
+      dispatch({ type: "ADD_TASK", taskName });
    };
    const handleDelete = (id) => {
-      const withoutTask = tasks.filter((task) => task.id !== id);
-      setTasks(withoutTask);
+      dispatch({ type: "DELETE_TASK", id });
    };
    const handleComplete = (id) => {
+      dispatch({ type: "COMPLETE_TASK" });
       console.log("Completed", id);
    };
 

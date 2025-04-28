@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const TodoContext = createContext();
 
@@ -22,11 +22,32 @@ const mocksTasks = [
    },
 ];
 
+const reducer = (state, action) => {
+   if (action.type === "ADD_TASK") {
+      const newTask = {
+         id: crypto.randomUUID(),
+         name: action.taskName,
+         completed: false,
+      };
+
+      return [...state, newTask];
+   }
+
+   if (action.type === "DELETE_TASK") {
+      const withoutTask = state.filter((task) => task.id !== action.id);
+      return withoutTask;
+   }
+
+   if (action.type === "COMPLETE_TASK") {
+      return state;
+   }
+};
+
 function AppContext({ children }) {
-   const [tasks, setTasks] = useState(mocksTasks);
+   const [tasks, dispatch] = useReducer(reducer, mocksTasks);
 
    return (
-      <TodoContext.Provider value={{ tasks, setTasks }}>
+      <TodoContext.Provider value={{ tasks, dispatch }}>
          {children}
       </TodoContext.Provider>
    );
