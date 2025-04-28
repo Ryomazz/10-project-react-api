@@ -11,4 +11,5 @@
 -  Separar en componentes la barra de añadir y las tareas independientes ✔️
 -  Implementar un context global con useContext ✔️
 -  Implementar useReducer para controlar el estado ✔️
--  Implementar el localStorage para la persistencia de datos
+-  Implementar el localStorage para la persistencia de datos ✔️
+-  Implementar los estilos para cuando se complete una tarea

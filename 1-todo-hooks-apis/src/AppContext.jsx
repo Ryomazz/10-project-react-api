@@ -1,10 +1,10 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const TodoContext = createContext();
 
 export const useTodoContext = () => useContext(TodoContext);
 
-const mocksTasks = [
+/*const mocksTasks = [
    {
       id: crypto.randomUUID(),
       name: "Do Homework",
@@ -20,7 +20,7 @@ const mocksTasks = [
       name: "Buy coffee",
       completed: false,
    },
-];
+]; */
 
 const reducer = (state, action) => {
    if (action.type === "ADD_TASK") {
@@ -30,6 +30,7 @@ const reducer = (state, action) => {
          completed: false,
       };
 
+      console.log();
       return [...state, newTask];
    }
 
@@ -44,8 +45,13 @@ const reducer = (state, action) => {
 };
 
 function AppContext({ children }) {
-   const [tasks, dispatch] = useReducer(reducer, mocksTasks);
-
+   const [tasks, dispatch] = useReducer(
+      reducer,
+      JSON.parse(localStorage.getItem("tasksLS"))
+   );
+   useEffect(() => {
+      localStorage.setItem("tasksLS", JSON.stringify(tasks));
+   }, [tasks]);
    return (
       <TodoContext.Provider value={{ tasks, dispatch }}>
          {children}

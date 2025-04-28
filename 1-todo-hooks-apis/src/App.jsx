@@ -9,6 +9,7 @@ function App() {
 
    const handleAdd = (e) => {
       e.preventDefault();
+      setTaskName("");
       dispatch({ type: "ADD_TASK", taskName });
    };
    const handleDelete = (id) => {
