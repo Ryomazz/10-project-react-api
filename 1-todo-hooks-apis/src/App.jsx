@@ -1,28 +1,11 @@
 import { useState } from "react";
 import Task from "./components/Task";
 import AddTaskBar from "./components/AddTaskBar";
-
-const mocksTasks = [
-   {
-      id: crypto.randomUUID(),
-      name: "Do Homework",
-      completed: false,
-   },
-   {
-      id: crypto.randomUUID(),
-      name: "Run 10km",
-      completed: true,
-   },
-   {
-      id: crypto.randomUUID(),
-      name: "Buy coffee",
-      completed: false,
-   },
-];
+import { useTodoContext } from "./AppContext";
 
 function App() {
    const [taskName, setTaskName] = useState("");
-   const [tasks, setTasks] = useState(mocksTasks);
+   const { tasks, setTasks } = useTodoContext();
 
    const handleAdd = (e) => {
       e.preventDefault();

@@ -8,4 +8,5 @@
 
 -  Construir la interfaz ✔️
 -  Hacer la funcionalidad sin reducer ni context ✔️
--  Separar en componentes la barra de añadir y las tareas independientes
+-  Separar en componentes la barra de añadir y las tareas independientes ✔️
+-  Agregar un context global con useContext ✔️
