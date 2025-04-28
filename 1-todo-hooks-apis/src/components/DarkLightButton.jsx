@@ -9,10 +9,11 @@ function DarkLightButton() {
    }, [darkLightMode]);
 
    return (
-      <section className="dark-light-button">
+      <section>
          <button
             style={{ cursor: "pointer" }}
             onClick={() => setDarkLightMode(!darkLightMode)}
+            className="dark-light-button"
          >
             {darkLightMode ? "☀️" : "🌑"}
          </button>
