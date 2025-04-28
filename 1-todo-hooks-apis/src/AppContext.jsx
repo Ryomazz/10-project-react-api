@@ -17,6 +17,13 @@ function AppContext({ children }) {
    );
    const [taskName, setTaskName] = useState("");
    const [selected, setSelected] = useState(null);
+   const [darkLightMode, setDarkLightMode] = useState(
+      JSON.parse(localStorage.getItem("dark-light"))
+   );
+
+   useEffect(() => {
+      localStorage.setItem("dark-light", JSON.stringify(darkLightMode));
+   }, [darkLightMode]);
 
    useEffect(() => {
       localStorage.setItem("tasksLS", JSON.stringify(tasks));
@@ -46,6 +53,8 @@ function AppContext({ children }) {
             setTaskName,
             selected,
             setSelected,
+            darkLightMode,
+            setDarkLightMode,
          }}
       >
          {children}

@@ -4,9 +4,23 @@ body {
    color: #fefefe;
    display: flex;
    justify-content: center;
+   padding: 0;
+   margin: 0;
+}
+
+.light {
+   background-color: #fefefe;
+   color: #111;
 }
 
 /*------ Container ------*/
+
+.wrapper {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+}
 
 .container {
    text-align: center;
@@ -19,6 +33,7 @@ body {
    display: flex;
    gap: 1rem;
    justify-content: center;
+
    & input {
       background-color: transparent;
       font-size: 1rem;
@@ -31,6 +46,11 @@ body {
 
       &:focus {
          border-color: rgb(221, 96, 175);
+      }
+
+      &.light {
+         background-color: #fefefe;
+         color: #111;
       }
    }
 

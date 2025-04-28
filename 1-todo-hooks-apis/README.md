@@ -16,3 +16,4 @@
 -  Implementar los estilos para cuando se complete una tarea ✔️
 -  Implementar los filtros por tareas completadas y tareas pendientes ✔️
 -  Implementar los estilos ✔️
+-  Implemenatar el modo obscuro/claro ✔️
