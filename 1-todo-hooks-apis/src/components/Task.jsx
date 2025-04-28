@@ -1,4 +1,7 @@
-function Task({ tasks, handleComplete, handleDelete }) {
+import { useTodoContext } from "../AppContext";
+
+function Task() {
+   const { tasks, handleDelete, handleComplete } = useTodoContext();
    return (
       <>
          {tasks && tasks.length

@@ -1,5 +1,11 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-
+import {
+   createContext,
+   useContext,
+   useEffect,
+   useReducer,
+   useState,
+} from "react";
+import reducer from "./utils/reducer";
 const TodoContext = createContext();
 
 export const useTodoContext = () => useContext(TodoContext);
@@ -22,38 +28,42 @@ export const useTodoContext = () => useContext(TodoContext);
    },
 ]; */
 
-const reducer = (state, action) => {
-   if (action.type === "ADD_TASK") {
-      const newTask = {
-         id: crypto.randomUUID(),
-         name: action.taskName,
-         completed: false,
-      };
-
-      console.log();
-      return [...state, newTask];
-   }
-
-   if (action.type === "DELETE_TASK") {
-      const withoutTask = state.filter((task) => task.id !== action.id);
-      return withoutTask;
-   }
-
-   if (action.type === "COMPLETE_TASK") {
-      return state;
-   }
-};
-
 function AppContext({ children }) {
    const [tasks, dispatch] = useReducer(
       reducer,
       JSON.parse(localStorage.getItem("tasksLS"))
    );
+   const [taskName, setTaskName] = useState("");
+
    useEffect(() => {
       localStorage.setItem("tasksLS", JSON.stringify(tasks));
    }, [tasks]);
+
+   const handleAdd = (e) => {
+      e.preventDefault();
+      setTaskName("");
+      dispatch({ type: "ADD_TASK", taskName });
+   };
+   const handleDelete = (id) => {
+      dispatch({ type: "DELETE_TASK", id });
+   };
+   const handleComplete = (id) => {
+      dispatch({ type: "COMPLETE_TASK" });
+      console.log("Completed", id);
+   };
+
    return (
-      <TodoContext.Provider value={{ tasks, dispatch }}>
+      <TodoContext.Provider
+         value={{
+            tasks,
+            dispatch,
+            handleAdd,
+            handleDelete,
+            handleComplete,
+            taskName,
+            setTaskName,
+         }}
+      >
          {children}
       </TodoContext.Provider>
    );

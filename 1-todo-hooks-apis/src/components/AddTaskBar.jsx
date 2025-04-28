@@ -1,4 +1,7 @@
-function AddTaskBar({ taskName, setTaskName, handleAdd }) {
+import { useTodoContext } from "../AppContext";
+
+function AddTaskBar() {
+   const { handleAdd, taskName, setTaskName } = useTodoContext();
    return (
       <>
          <form>
