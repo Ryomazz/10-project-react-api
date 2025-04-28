@@ -6,3 +6,4 @@
 ## Steps
 
 - Construir la interfaz
+- Implementar la funcionalidad si context ni reducer
