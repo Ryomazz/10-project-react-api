@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Task from "./components/Task";
+import AddTaskBar from "./components/AddTaskBar";
 
 const mocksTasks = [
    {
@@ -35,37 +37,23 @@ function App() {
       const withoutTask = tasks.filter((task) => task.id !== id);
       setTasks(withoutTask);
    };
-   const handleComplete = () => {};
+   const handleComplete = (id) => {
+      console.log("Completed", id);
+   };
 
    return (
       <>
          <h1>Nice Todo App</h1>
-         <form>
-            <input
-               type="text"
-               placeholder="Things to do..."
-               value={taskName}
-               onChange={(e) => setTaskName(e.target.value)}
-            />
-            <button onClick={handleAdd}>+</button>
-         </form>
-         {tasks && tasks.length
-            ? tasks.map((task) => {
-                 const { id, name, completed } = task;
-                 return (
-                    <article
-                       key={id}
-                       className={completed ? "completed" : null}
-                    >
-                       <h3>{name}</h3>
-                       <button onClick={() => handleDelete(id)}>Delete</button>
-                       <button onClick={() => handleComplete(id)}>
-                          Complete
-                       </button>
-                    </article>
-                 );
-              })
-            : null}
+         <AddTaskBar
+            taskName={taskName}
+            setTaskName={setTaskName}
+            handleAdd={handleAdd}
+         />
+         <Task
+            tasks={tasks}
+            handleComplete={handleComplete}
+            handleDelete={handleDelete}
+         />
       </>
    );
 }
