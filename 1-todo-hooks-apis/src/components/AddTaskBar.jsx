@@ -4,7 +4,7 @@ function AddTaskBar() {
    const { handleAdd, taskName, setTaskName } = useTodoContext();
    return (
       <>
-         <form>
+         <form className="add-bar">
             <input
                type="text"
                placeholder="Things to do..."

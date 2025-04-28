@@ -19,25 +19,25 @@ function Task() {
    }, [selected, tasks]);
 
    return (
-      <>
+      <section className="tasks-container">
          {filteredTask && filteredTask.length
             ? filteredTask.map((task) => {
                  const { id, name, completed } = task;
                  return (
                     <article
                        key={id}
-                       className={completed ? "completed" : null}
+                       className={`task ${completed ? "completed" : null}`}
                     >
                        <h3>{name}</h3>
-                       <button onClick={() => handleDelete(id)}>Delete</button>
-                       <button onClick={() => handleComplete(id)}>
-                          Complete
-                       </button>
+                       <div className="button-container">
+                          <button onClick={() => handleDelete(id)}>🗑️</button>
+                          <button onClick={() => handleComplete(id)}>👌</button>
+                       </div>
                     </article>
                  );
               })
             : null}
-      </>
+      </section>
    );
 }
 export default Task;

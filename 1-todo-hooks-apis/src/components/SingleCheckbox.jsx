@@ -9,7 +9,7 @@ function SingleCheckbox() {
    };
 
    return (
-      <div>
+      <div className="checkbox-container">
          {options.map((option) => {
             return (
                <div key={option}>
