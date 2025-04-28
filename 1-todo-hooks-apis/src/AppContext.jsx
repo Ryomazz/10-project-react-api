@@ -10,31 +10,13 @@ const TodoContext = createContext();
 
 export const useTodoContext = () => useContext(TodoContext);
 
-/*const mocksTasks = [
-   {
-      id: crypto.randomUUID(),
-      name: "Do Homework",
-      completed: false,
-   },
-   {
-      id: crypto.randomUUID(),
-      name: "Run 10km",
-      completed: true,
-   },
-   {
-      id: crypto.randomUUID(),
-      name: "Buy coffee",
-      completed: false,
-   },
-]; */
-
 function AppContext({ children }) {
    const [tasks, dispatch] = useReducer(
       reducer,
       JSON.parse(localStorage.getItem("tasksLS"))
    );
    const [taskName, setTaskName] = useState("");
-   const [isFiltered, setIsFiltered] = useState(false);
+   const [selected, setSelected] = useState(null);
 
    useEffect(() => {
       localStorage.setItem("tasksLS", JSON.stringify(tasks));
@@ -62,8 +44,8 @@ function AppContext({ children }) {
             handleComplete,
             taskName,
             setTaskName,
-            isFiltered,
-            setIsFiltered,
+            selected,
+            setSelected,
          }}
       >
          {children}

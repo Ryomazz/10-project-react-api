@@ -1,8 +1,7 @@
 import { useTodoContext } from "../AppContext";
 
 function AddTaskBar() {
-   const { handleAdd, taskName, setTaskName, setIsFiltered, isFiltered } =
-      useTodoContext();
+   const { handleAdd, taskName, setTaskName } = useTodoContext();
    return (
       <>
          <form>
@@ -13,13 +12,6 @@ function AddTaskBar() {
                onChange={(e) => setTaskName(e.target.value)}
             />
             <button onClick={handleAdd}>+</button>
-            <label htmlFor="dones">Completed Tasks</label>
-            <input
-               type="checkbox"
-               name="dones"
-               id="dones"
-               onClick={() => setIsFiltered(!isFiltered)}
-            />
          </form>
       </>
    );
