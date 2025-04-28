@@ -48,8 +48,7 @@ function AppContext({ children }) {
       dispatch({ type: "DELETE_TASK", id });
    };
    const handleComplete = (id) => {
-      dispatch({ type: "COMPLETE_TASK" });
-      console.log("Completed", id);
+      dispatch({ type: "COMPLETE_TASK", id });
    };
 
    return (

@@ -16,7 +16,12 @@ const reducer = (state, action) => {
    }
 
    if (action.type === "COMPLETE_TASK") {
-      return state;
+      const newState = state.map((task) => {
+         return task.id === action.id
+            ? { ...task, completed: !task.completed }
+            : task;
+      });
+      return newState;
    }
 };
 

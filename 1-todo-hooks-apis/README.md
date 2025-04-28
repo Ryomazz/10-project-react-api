@@ -12,4 +12,5 @@
 -  Implementar un context global con useContext ✔️
 -  Implementar useReducer para controlar el estado ✔️
 -  Implementar el localStorage para la persistencia de datos ✔️
--  Implementar los estilos para cuando se complete una tarea
+-  Separar la logica y el reducer ✔️
+-  Implementar los estilos para cuando se complete una tarea ✔️

@@ -1,4 +1,5 @@
 import { useTodoContext } from "../AppContext";
+import "./Task.css";
 
 function Task() {
    const { tasks, handleDelete, handleComplete } = useTodoContext();
