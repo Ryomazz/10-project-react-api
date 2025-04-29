@@ -1,8 +1,11 @@
-# React + Vite
+# 2️⃣ **Buscador de Películas (API Fetch)**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔹 **Hooks:** `useState`, `useEffect`, `useMemo`, `useCallback`  
+🔹 **APIs:** Fetch a [OMDb API](https://www.omdbapi.com/) o [The Movie DB](https://www.themoviedb.org/)  
+🔹 **Extras:** Paginación, búsqueda en tiempo real con debounce, favoritos con `localStorage`.
 
-Currently, two official plugins are available:
+key : edf2da3d
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Steps ✔️
+
+-  Implementar la interfaz ✔️
