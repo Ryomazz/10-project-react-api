@@ -1,9 +1,20 @@
-import React from 'react'
+import { useTodoContext } from "../AppContext";
 
-const SearchBar = () => {
-  return (
-    <div>SearchBar</div>
-  )
+function AddTaskBar() {
+   const { handleAdd, taskName, setTaskName, darkLightMode } = useTodoContext();
+   return (
+      <>
+         <form className="add-bar">
+            <input
+               type="text"
+               placeholder="Things to do..."
+               value={taskName}
+               onChange={(e) => setTaskName(e.target.value)}
+               className={darkLightMode ? "" : "light"}
+            />
+            <button onClick={handleAdd}>+</button>
+         </form>
+      </>
+   );
 }
-
-export default SearchBar
+export default AddTaskBar;
