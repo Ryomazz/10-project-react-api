@@ -10,36 +10,26 @@ key : edf2da3d
 
 ## Funcionalidades Básicas (MVP - Mínimo Producto Viable)
 
-1. Búsqueda por título
+1. Búsqueda por título ✔️
 
    -  Integración con una API como OMDb, The Movie Database (TMDb) o IMDb API.
-
    -  Campo de búsqueda con autocompletado (sugerencias al escribir).
 
-2. Mostrar resultados básicos
+2. Mostrar resultados básicos ✔️
 
    -  Grid o lista de películas con:
-
       -  Poster.
-
       -  Título.
-
       -  Año de lanzamiento.
-
       -  Rating (ej: ⭐ 7.5/10).
 
 3. Detalles de la película
 
    -  Al hacer clic en una película, mostrar:
-
       -  Sinopsis.
-
       -  Géneros.
-
       -  Duración.
-
       -  Director.
-
       -  Reparto (actores principales).
 
 4. Diseño responsive
@@ -53,17 +43,12 @@ key : edf2da3d
    -  Filtrar por:
 
       -  Género (ej: Acción, Comedia).
-
       -  Año (rango de años).
-
       -  Idioma.
 
    -  Ordenar por:
-
       -  Popularidad.
-
       -  Fecha de lanzamiento.
-
       -  Rating (IMDb/TMDb).
 
 6. Paginación o scroll infinito
@@ -125,11 +110,7 @@ key : edf2da3d
 ## Tecnologías Recomendadas
 
 -  APIs: TMDb (gratis y completa), OMDb (sencilla), IMDb API (si tienes acceso).
-
 -  Estado global: Context API, Redux Toolkit o Zustand.
-
 -  Estilos: CSS Modules, TailwindCSS, o Styled Components.
-
 -  Routing: React Router.
-
 -  Deploy: Vercel, Netlify o GitHub Pages.

@@ -1585,3 +1585,39 @@ body > footer {
       text-decoration: underline;
    }
 }
+
+body {
+   display: flex;
+   justify-content: center;
+   text-align: center;
+}
+
+form {
+   display: flex;
+   justify-content: center;
+   gap: 1rem;
+}
+
+.movies-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   gap: 20px;
+   padding: 20px;
+
+   & .movie {
+      border: 1px solid #00000038;
+      padding: 1rem;
+      border-radius: 10px;
+      background-color: #0000002f;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+
+      &:hover {
+         transform: scale(1.1Q);
+      }
+   }
+
+   & img {
+      border-radius: 10px;
+   }
+}
