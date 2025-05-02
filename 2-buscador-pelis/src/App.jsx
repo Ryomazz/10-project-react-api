@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import Movies from "./components/Movies";
 
 function App() {
    const [movies, setMovies] = useState([]);
+   const [suggestions, setSuggestions] = useState([]);
    const [loading, setLoading] = useState(false);
    const [query, setQuery] = useState("");
 
@@ -18,6 +20,7 @@ function App() {
          const data = await response.json();
 
          setMovies(data.Search);
+         setSuggestions(data.Search.slice(0, 4));
       } catch (error) {
          console.log("Was an error: ", error.message);
       } finally {
@@ -36,6 +39,7 @@ function App() {
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      setSuggestions([]);
    };
 
    return (
@@ -51,20 +55,12 @@ function App() {
             <button onClick={handleSubmit}>Search</button>
          </form>
          {loading && <h2>Loading data, please wait...</h2>}
-         <section className="movies-container">
-            {movies && movies.length
-               ? movies.map((movie) => {
-                    const { Title, Year, Poster, imdbID } = movie;
-                    return (
-                       <article key={imdbID} className="movie">
-                          <h2>{Title}</h2>
-                          <h3>{Year}</h3>
-                          <img src={Poster} alt={Title} />
-                       </article>
-                    );
-                 })
-               : null}
-         </section>
+         <Movies
+            movies={suggestions && suggestions.length ? suggestions : movies}
+         />
+         {suggestions && suggestions.length ? (
+            <h2>Load all result presing the search button</h2>
+         ) : null}
       </div>
    );
 }
