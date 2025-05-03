@@ -1,0 +1,34 @@
+.movie-wrapper {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100vw;
+   height: 100vh;
+   background-color: #000000cc;
+   z-index: 10;
+
+   button {
+      position: absolute;
+      right: 3rem;
+      background-color: #fefefe;
+   }
+
+   & .movieDetails {
+      padding: 0 5rem;
+
+      & p {
+         font-size: 1.2rem;
+         color: khaki;
+      }
+
+      & p.plot {
+         background-color: #fefefe;
+         color: #000;
+      }
+   }
+
+   & img {
+      max-width: 30vw;
+      border-radius: 10px;
+   }
+}

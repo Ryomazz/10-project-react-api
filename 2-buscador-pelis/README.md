@@ -15,7 +15,7 @@ key : edf2da3d
    -  Integración con una API como OMDb, The Movie Database (TMDb) o IMDb API. ✔️
    -  Campo de búsqueda con autocompletado (sugerencias al escribir). ✔️
 
-2. Mostrar resultados básicos
+2. Mostrar resultados básicos ✔️
 
    -  Grid o lista de películas con:
       -  Poster.

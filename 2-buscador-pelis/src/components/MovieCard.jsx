@@ -1,7 +1,7 @@
-function MovieCard({ movie }) {
-   const { title, year, poster } = movie;
+function MovieCard({ movie, handleShowModal }) {
+   const { title, year, poster, id } = movie;
    return (
-      <article className="movie">
+      <article className="movie" onClick={() => handleShowModal(id)}>
          <h2>{title}</h2>
          <h3>{year}</h3>
          <img src={poster} alt={title} />

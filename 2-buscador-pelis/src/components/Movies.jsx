@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard";
 
-function Movies({ movies }) {
+function Movies({ movies, handleShowModal }) {
    const uncontractedMovies =
       movies && movies.length
          ? movies.map((movie) => {
@@ -18,7 +18,13 @@ function Movies({ movies }) {
          {uncontractedMovies && uncontractedMovies.length
             ? uncontractedMovies.map((movie) => {
                  const { id } = movie;
-                 return <MovieCard key={id} movie={movie} />;
+                 return (
+                    <MovieCard
+                       key={id}
+                       movie={movie}
+                       handleShowModal={handleShowModal}
+                    />
+                 );
               })
             : null}
       </section>
