@@ -1,8 +1,19 @@
 import MovieCard from "./MovieCard";
+import { useSearchMovieContext } from "../AppContext";
 
-function Movies({ movies, handleShowModal }) {
+function Movies() {
+   const { suggestions, movies } = useSearchMovieContext();
    const uncontractedMovies =
-      movies && movies.length
+      suggestions && suggestions.length
+         ? suggestions.map((movie) => {
+              return {
+                 title: movie.Title,
+                 year: movie.Year,
+                 poster: movie.Poster,
+                 id: movie.imdbID,
+              };
+           })
+         : movies && movies.length
          ? movies.map((movie) => {
               return {
                  title: movie.Title,
@@ -13,18 +24,14 @@ function Movies({ movies, handleShowModal }) {
            })
          : null;
 
+   console.log(suggestions, movies);
+
    return (
       <section className="movies-container">
          {uncontractedMovies && uncontractedMovies.length
             ? uncontractedMovies.map((movie) => {
                  const { id } = movie;
-                 return (
-                    <MovieCard
-                       key={id}
-                       movie={movie}
-                       handleShowModal={handleShowModal}
-                    />
-                 );
+                 return <MovieCard key={id} movie={movie} />;
               })
             : null}
       </section>

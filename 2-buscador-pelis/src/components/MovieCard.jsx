@@ -1,4 +1,7 @@
-function MovieCard({ movie, handleShowModal }) {
+import { useSearchMovieContext } from "../AppContext";
+
+function MovieCard({ movie }) {
+   const { handleShowModal } = useSearchMovieContext();
    const { title, year, poster, id } = movie;
    return (
       <article className="movie" onClick={() => handleShowModal(id)}>

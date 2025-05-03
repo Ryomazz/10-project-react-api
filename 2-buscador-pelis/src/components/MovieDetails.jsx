@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./MovieDetails.css";
+import { useSearchMovieContext } from "../AppContext";
 
-function MovieDetails({ selectedMovie, handleShowModal }) {
+function MovieDetails() {
    const [movieDetails, setMovieDetails] = useState([]);
    const [isLoading, setIsLoading] = useState(false);
+   const { selectedMovie, handleShowModal } = useSearchMovieContext();
 
    const fetchMovieDetails = async () => {
       setIsLoading(true);
@@ -28,6 +30,8 @@ function MovieDetails({ selectedMovie, handleShowModal }) {
    useEffect(() => {
       fetchMovieDetails();
    }, [selectedMovie]);
+
+   if (isLoading) return <h2>Loading data movie...</h2>;
 
    return (
       <div className="movie-wrapper">

@@ -23,7 +23,7 @@ key : edf2da3d
       -  Año de lanzamiento.
       -  Rating (ej: ⭐ 7.5/10).
 
-3. Detalles de la película
+3. Detalles de la película ✔️
 
    -  Al hacer clic en una película, mostrar:
       -  Sinopsis.
@@ -32,7 +32,7 @@ key : edf2da3d
       -  Director.
       -  Reparto (actores principales).
 
-4. Diseño responsive
+4. Diseño responsive ✔️
 
    -  Que funcione bien en móviles, tablets y desktop.
 
