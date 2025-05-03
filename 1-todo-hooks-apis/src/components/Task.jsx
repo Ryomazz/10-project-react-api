@@ -3,8 +3,28 @@ import { useTodoContext } from "../AppContext";
 import "./Task.css";
 
 function Task() {
-   const { handleDelete, handleComplete, tasks, selected } = useTodoContext();
+   const { handleDelete, handleComplete, tasks, selected, dispatch } =
+      useTodoContext();
    const [filteredTask, setFilteredTask] = useState(tasks);
+
+   const handleDragStart = (e, id) => {
+      e.dataTransfer.setData("text/plain", id);
+   };
+
+   const handleDragEnd = (e) => {
+      console.log(e.target);
+   };
+
+   const handleDragOver = (e) => {
+      e.preventDefault();
+   };
+
+   const handleDrop = (e, id) => {
+      e.preventDefault();
+
+      const actualId = e.dataTransfer.getData("text/plain");
+      dispatch({ type: "DRAG_TASK", actualId, previousId: id });
+   };
 
    useEffect(() => {
       if (selected === "Completed") {
@@ -27,6 +47,11 @@ function Task() {
                     <article
                        key={id}
                        className={`task ${completed ? "completed" : null}`}
+                       draggable="true"
+                       onDragStart={(e) => handleDragStart(e, id)}
+                       onDragEnd={handleDragEnd}
+                       onDragOver={handleDragOver}
+                       onDrop={(e) => handleDrop(e, id)}
                     >
                        <h3>{name}</h3>
                        <div className="button-container">

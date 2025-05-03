@@ -1,5 +1,6 @@
 const reducer = (state, action) => {
    if (action.type === "ADD_TASK") {
+      if (!action.taskName.trim()) return state;
       const newTask = {
          id: crypto.randomUUID(),
          name: action.taskName,
@@ -21,6 +22,28 @@ const reducer = (state, action) => {
             ? { ...task, completed: !task.completed }
             : task;
       });
+      return newState;
+   }
+
+   if (action.type === "DRAG_TASK") {
+      const { actualId, previousId } = action;
+      if (previousId === null) return state;
+
+      const selectedTask = state.indexOf(
+         state.find((task) => task.id === actualId)
+      );
+      const previousTask = state.indexOf(
+         state.find((task) => task.id === previousId)
+      );
+
+      const newState = [...state];
+      [newState[previousTask], newState[selectedTask]] = [
+         newState[selectedTask],
+         newState[previousTask],
+      ];
+
+      console.log(newState);
+
       return newState;
    }
 };

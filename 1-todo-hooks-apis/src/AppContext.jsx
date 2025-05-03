@@ -14,6 +14,8 @@ function AppContext({ children }) {
    const [tasks, dispatch] = useReducer(
       reducer,
       JSON.parse(localStorage.getItem("tasksLS"))
+         ? JSON.parse(localStorage.getItem("tasksLS"))
+         : []
    );
    const [taskName, setTaskName] = useState("");
    const [selected, setSelected] = useState(null);
