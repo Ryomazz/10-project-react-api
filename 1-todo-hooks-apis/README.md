@@ -17,3 +17,4 @@
 -  Implementar los filtros por tareas completadas y tareas pendientes ✔️
 -  Implementar los estilos ✔️
 -  Implementar el modo obscuro/claro con el localStorage ✔️
+-  Implementar Drag and Drop para cambiar el orden de las tareas ✔️
