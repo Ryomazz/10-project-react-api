@@ -24,8 +24,6 @@ function Movies() {
            })
          : null;
 
-   console.log(suggestions, movies);
-
    return (
       <section className="movies-container">
          {uncontractedMovies && uncontractedMovies.length
