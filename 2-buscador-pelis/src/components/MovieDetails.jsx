@@ -29,7 +29,7 @@ function MovieDetails() {
 
    useEffect(() => {
       fetchMovieDetails();
-   }, [fetchMovieDetails, selectedMovie]);
+   }, [selectedMovie]);
 
    if (isLoading) return <h2>Loading data movie...</h2>;
 
