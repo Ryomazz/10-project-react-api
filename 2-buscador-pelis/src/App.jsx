@@ -25,7 +25,7 @@ function App() {
                onChange={(e) => setQuery(e.target.value)}
             />
             <button onClick={handleSubmit}>Search</button>
-            <label htmlFor="order">by Year</label>
+            <label htmlFor="order">Order by Year</label>
             <input
                type="checkbox"
                checked={isOrdered}

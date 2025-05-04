@@ -46,7 +46,7 @@ key : edf2da3d
       -  Año (rango de años).
       -  Idioma.
 
-   -  Ordenar por:
+   -  Ordenar por: ✔️
       -  Popularidad.
       -  Fecha de lanzamiento.
       -  Rating (IMDb/TMDb).
