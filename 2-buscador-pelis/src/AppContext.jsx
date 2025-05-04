@@ -9,6 +9,8 @@ function AppContext({ children }) {
    const [suggestions, setSuggestions] = useState([]);
    const [showModal, setShowModal] = useState(false);
    const [selectedMovie, setSelectedMovie] = useState("");
+   const [isOrdered, setIsOrdered] = useState(false);
+   const [uncontractedMovies, setUncontractedMovies] = useState([]);
 
    const handleShowModal = (id) => {
       setShowModal(!showModal);
@@ -27,6 +29,10 @@ function AppContext({ children }) {
             selectedMovie,
             setSelectedMovie,
             handleShowModal,
+            isOrdered,
+            setIsOrdered,
+            uncontractedMovies,
+            setUncontractedMovies,
          }}
       >
          {children}

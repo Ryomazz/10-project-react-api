@@ -5,7 +5,8 @@ import { useSearchMovieContext } from "./AppContext";
 import useFetchMovies from "./hooks/useFetchMovies";
 
 function App() {
-   const { setSuggestions, showModal, suggestions } = useSearchMovieContext();
+   const { setSuggestions, showModal, suggestions, isOrdered, setIsOrdered } =
+      useSearchMovieContext();
    const [query, setQuery, loading] = useFetchMovies();
 
    const handleSubmit = (e) => {
@@ -24,6 +25,13 @@ function App() {
                onChange={(e) => setQuery(e.target.value)}
             />
             <button onClick={handleSubmit}>Search</button>
+            <label htmlFor="order">by Year</label>
+            <input
+               type="checkbox"
+               checked={isOrdered}
+               onChange={() => setIsOrdered(!isOrdered)}
+               id="order"
+            />
          </form>
          {loading && <h2>Loading data, please wait...</h2>}
          {showModal && <MovieDetails />}
