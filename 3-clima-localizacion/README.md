@@ -8,3 +8,6 @@
    🔹 **Extras:** Pronóstico extendido, cambiar unidades (°C/°F).
 
 ## Steps
+
+-  Implementar la interfaz ✔️
+-  Hacer el fetching de datos y renderizar los datos ✔️
