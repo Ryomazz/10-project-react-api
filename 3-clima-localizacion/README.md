@@ -1,8 +1,10 @@
-# 3️⃣ Clima con Geolocalización
+# 3️⃣ **Clima con Geolocalización**
 
-🔹 Hooks: useState, useEffect, useReducer
-🔹 APIs:
+🔹 **Hooks:** `useState`, `useEffect`, `useReducer`  
+🔹 **APIs:**
 
-navigator.geolocation (Geolocation API)
-Fetch a OpenWeatherMap
-🔹 Extras: Pronóstico extendido, cambiar unidades (°C/°F).
+-  `navigator.geolocation` (Geolocation API)
+-  Fetch a [OpenWeatherMap](https://openweathermap.org/api)  
+   🔹 **Extras:** Pronóstico extendido, cambiar unidades (°C/°F).
+
+## Steps
