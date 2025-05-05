@@ -1,39 +1,71 @@
-import { use } from "react";
 import { useEffect, useState } from "react";
 
-//const url = `https://api.openweathermap.org/data/2.5/weather?lat=${}&lon=${}&appid=44d709fafb1c0ca7129796faaf418681`;
+const url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=44d709fafb1c0ca7129796faaf418681`;
 
 function App() {
+   const [geoCoords, setGeoCoords] = useState({ lat: null, lon: null });
+   const [cityName, setCityName] = useState("");
    const [weatherInfo, setWeatherInfo] = useState(null);
    const [loadingWeather, setLoadingWeather] = useState(false);
    const [error, setError] = useState(null);
-   const [cityName, setCityName] = useState("Havana");
-   const [geoInfo, setGeoInfo] = useState(null);
 
-   const fetchGeoInfo = async () => {
+   // Getting geolocation when mounting component
+   useEffect(() => {
+      if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(
+            (position) => {
+               setGeoCoords({
+                  lat: position.coords.latitude,
+                  lon: position.coords.longitude,
+               });
+            },
+            (error) => {
+               setError("No se pudo obtener la ubicacion: " + error.message);
+            }
+         );
+      } else {
+         setError("Geolocalización no soportada por tu navegador");
+      }
+   }, []);
+
+   const fetchWeatherData = async () => {
+      if ((!geoCoords.lat && !geoCoords.lon && !cityName) || loadingWeather)
+         return;
+
       setLoadingWeather(true);
+      setError(null);
       try {
-         const response = await fetch(
-            `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=44d709fafb1c0ca7129796faaf418681`
-         );
+         let url = "https://api.openweathermap.org/data/2.5/weather?";
+         let apiKey = "44d709fafb1c0ca7129796faaf418681";
+
+         if (cityName) {
+            url += `q=${cityName}&appid=${apiKey}`;
+         } else if (geoCoords.lat && geoCoords.lon) {
+            url += `lat=${geoCoords.lat}&lon=${geoCoords.lon}&appid=${apiKey}`;
+         } else return;
+
+         const response = await fetch(url);
+         if (!response.ok) throw new Error("Error en la respuest");
          const data = await response.json();
-         const responseWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${data[0].lat}&lon=${data[0].lon}&appid=44d709fafb1c0ca7129796faaf418681`
-         );
-         const dataWeather = await responseWeather.json();
-         setWeatherInfo(dataWeather);
+
+         setWeatherInfo(data);
       } catch (error) {
-         setError(error.message);
+         setError("Error obteniendo datos del clima: ", error.message);
       } finally {
          setLoadingWeather(false);
       }
    };
 
-   useEffect(() => {}, []);
+   // Fetch weather data when coords or city name change
+   useEffect(() => {
+      if ((!geoCoords.lat && !geoCoords.lon && !cityName) || loadingWeather)
+         return;
+      fetchWeatherData();
+   }, [geoCoords, loadingWeather]);
 
    const handleClick = (e) => {
       e.preventDefault();
-      fetchGeoInfo();
+      fetchWeatherData();
    };
 
    return (

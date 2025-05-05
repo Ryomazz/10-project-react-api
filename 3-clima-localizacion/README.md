@@ -11,4 +11,5 @@
 
 -  Implementar la interfaz ✔️
 -  Hacer el fetching de datos y renderizar los datos ✔️
--  Implementar la Geolocation API ✔️
+-  Implementado la busqueda por nombre de ciudad ✔️
+-  Implementar la Geolocation API renderizando por defecto los datos de la ubicacion del usuario
