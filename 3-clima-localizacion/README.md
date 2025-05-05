@@ -11,3 +11,4 @@
 
 -  Implementar la interfaz ✔️
 -  Hacer el fetching de datos y renderizar los datos ✔️
+-  Implementar la Geolocation API ✔️
