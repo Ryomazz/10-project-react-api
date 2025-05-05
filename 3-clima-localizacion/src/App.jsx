@@ -1,85 +1,76 @@
 import { useEffect, useState } from "react";
 
-const url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=44d709fafb1c0ca7129796faaf418681`;
+let urlCountry = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=44d709fafb1c0ca7129796faaf418681`;
+
+let urlCoord = `https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid=44d709fafb1c0ca7129796faaf418681`;
 
 function App() {
    const [geoCoords, setGeoCoords] = useState({ lat: null, lon: null });
-   const [cityName, setCityName] = useState("");
+   const [cityName, setCityName] = useState("Havana");
    const [weatherInfo, setWeatherInfo] = useState(null);
    const [loadingWeather, setLoadingWeather] = useState(false);
    const [error, setError] = useState(null);
 
-   // Getting geolocation when mounting component
+   //Definir las coordenadas al montar el componente
    useEffect(() => {
-      if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition(
-            (position) => {
-               setGeoCoords({
-                  lat: position.coords.latitude,
-                  lon: position.coords.longitude,
-               });
-            },
-            (error) => {
-               setError("No se pudo obtener la ubicacion: " + error.message);
-            }
-         );
-      } else {
-         setError("Geolocalización no soportada por tu navegador");
-      }
+      navigator.geolocation.getCurrentPosition(
+         (position) => {
+            setGeoCoords({
+               lat: position.coords.latitude,
+               lon: position.coords.longitude,
+            });
+         },
+         (error) => {
+            setError("Error while getting location coords " + error.message);
+         }
+      );
    }, []);
 
-   const fetchWeatherData = async () => {
-      if ((!geoCoords.lat && !geoCoords.lon && !cityName) || loadingWeather)
-         return;
-
+   const fetchWeatherInfo = async () => {
       setLoadingWeather(true);
       setError(null);
       try {
-         let url = "https://api.openweathermap.org/data/2.5/weather?";
-         let apiKey = "44d709fafb1c0ca7129796faaf418681";
-
-         if (cityName) {
-            url += `q=${cityName}&appid=${apiKey}`;
-         } else if (geoCoords.lat && geoCoords.lon) {
-            url += `lat=${geoCoords.lat}&lon=${geoCoords.lon}&appid=${apiKey}`;
-         } else return;
-
-         const response = await fetch(url);
-         if (!response.ok) throw new Error("Error en la respuest");
+         let response = {};
+         if (geoCoords.lat && geoCoords.lon) {
+            response = await fetch(
+               `https://api.openweathermap.org/data/2.5/weather?lat=${geoCoords.lat}&lon=${geoCoords.lon}&appid=44d709fafb1c0ca7129796faaf418681`
+            );
+         } else if (cityName) {
+            response = await fetch(
+               `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=44d709fafb1c0ca7129796faaf418681`
+            );
+         }
          const data = await response.json();
-
+         console.log(data, "a");
          setWeatherInfo(data);
       } catch (error) {
-         setError("Error obteniendo datos del clima: ", error.message);
+         setError("Error fetching weather info " + error.message);
       } finally {
          setLoadingWeather(false);
       }
    };
 
-   // Fetch weather data when coords or city name change
    useEffect(() => {
-      if ((!geoCoords.lat && !geoCoords.lon && !cityName) || loadingWeather)
-         return;
-      fetchWeatherData();
-   }, [geoCoords, loadingWeather]);
+      fetchWeatherInfo();
+   }, [geoCoords, cityName]);
 
-   const handleClick = (e) => {
+   const handleSubmit = (e) => {
       e.preventDefault();
-      fetchWeatherData();
+      setCityName(e.target.query.value);
+      setGeoCoords({ lat: null, lon: null });
    };
 
    return (
       <div>
-         <form>
+         <form onSubmit={handleSubmit}>
             <input
                type="text"
                placeholder="London, Havana, Madrid..."
-               value={cityName}
-               onChange={(e) => setCityName(e.target.value)}
+               name="query"
             />
-            <button onClick={handleClick}>Get Weather Info</button>
+            <button>Get Weather Info</button>
          </form>
-         {error && <h2>There was an error: {error}</h2>}
+         {error && <h2>{error}</h2>}
          {loadingWeather && <h2>Loading data, please wait...</h2>}
          {weatherInfo && (
             <section>
