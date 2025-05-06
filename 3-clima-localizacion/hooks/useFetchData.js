@@ -1,22 +1,14 @@
 import { useState, useEffect } from "react";
+import { useWeatherAppContext } from "../context/GeoWeatherAppContext";
 
 function useFetchData(cityName) {
    const [weatherInfo, setWeatherInfo] = useState(null);
    const [loadingWeather, setLoadingWeather] = useState(false);
    const [error, setError] = useState(null);
-   const [geoCoords, setGeoCoords] = useState({ lat: null, lon: null });
-
-   //Definir las coordenadas al montar el componente
-   useEffect(() => {
-      navigator.geolocation.getCurrentPosition((position) => {
-         setGeoCoords({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-         });
-      });
-   }, []);
+   const { geoCoords = "" } = useWeatherAppContext();
 
    useEffect(() => {
+      if (cityName === "") return;
       fetchWeatherInfo();
    }, [geoCoords, cityName]);
 
@@ -48,6 +40,6 @@ function useFetchData(cityName) {
       }
    };
 
-   return [weatherInfo, error, loadingWeather, setGeoCoords];
+   return [weatherInfo, error, loadingWeather];
 }
 export default useFetchData;

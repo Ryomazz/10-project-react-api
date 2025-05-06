@@ -13,4 +13,5 @@
 -  Hacer el fetching de datos y renderizar los datos ✔️
 -  Implementado la busqueda por nombre de ciudad ✔️
 -  Implementar la Geolocation API renderizando por defecto los datos de la ubicacion del usuario ✔️
--  Se parar la logica en custom hooks y componentes ✔️
+-  Separar la logica en custom hooks y componentes ✔️
+-  Implementando Context API para manejo del estado
