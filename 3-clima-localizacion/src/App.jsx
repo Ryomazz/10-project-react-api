@@ -1,6 +1,6 @@
-import useFetchData from "../hooks/useFetchData";
 import Weather from "../components/Weather";
 import Search from "../components/Search";
+import "../components/Weather.css";
 
 function App() {
    return (

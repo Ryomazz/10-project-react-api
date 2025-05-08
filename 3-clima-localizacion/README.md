@@ -16,4 +16,4 @@
 -  Separar la logica en custom hooks y componentes ✔️
 -  Implementando Context API para manejo del estado ✔️
 -  Implementar boton para cambiar la notacion de la temperatura ✔️
--  Estilar basandose en una UI moderna
+-  Estilar basandose en una UI moderna ✔️

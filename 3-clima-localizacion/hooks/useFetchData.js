@@ -15,7 +15,6 @@ function useFetchData(cityName, geoCoords) {
       setError(null);
       try {
          let response = {};
-         console.log(geoCoords);
          if (geoCoords.lat && geoCoords.lon) {
             response = await fetch(
                `https://api.openweathermap.org/data/2.5/weather?lat=${geoCoords.lat}&lon=${geoCoords.lon}&appid=44d709fafb1c0ca7129796faaf418681`
