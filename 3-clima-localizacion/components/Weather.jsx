@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import Temp from "./Temp";
+
 function Weather({ error, weatherInfo, loadingWeather }) {
    return (
       <div>
@@ -10,11 +13,11 @@ function Weather({ error, weatherInfo, loadingWeather }) {
                      {weatherInfo?.name} {weatherInfo?.sys?.country}
                   </h1>
                   <h3>Description: {weatherInfo?.weather[0]?.description}</h3>
-                  <p>Temp: {Math.round(weatherInfo?.main?.temp - 273)}ºC </p>
                   <p>
-                     Feels Like:{" "}
-                     {Math.round(weatherInfo?.main?.feels_like - 273)}
-                     ºC{" "}
+                     Temp: <Temp temp={weatherInfo?.main?.temp} />
+                  </p>
+                  <p>
+                     Feels Like: <Temp temp={weatherInfo?.main?.feels_like} />
                   </p>
                   <p>Humidity : {weatherInfo?.main?.humidity}% </p>
                </section>
