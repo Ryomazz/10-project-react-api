@@ -1,30 +1,36 @@
-import { useEffect, useState } from "react";
+import { useWeatherAppContext } from "../context/GeoWeatherAppContext";
 import Temp from "./Temp";
 
-function Weather({ error, weatherInfo, loadingWeather }) {
+function Weather() {
+   const date = new Date().toDateString();
+   const { setTypeOfTemp, weatherInfo, error, loadingWeather } =
+      useWeatherAppContext();
    return (
-      <div>
+      <section className="weather-info">
          {error ? (
             <h2>{error}</h2>
          ) : (
             weatherInfo && (
-               <section>
-                  <h1>
-                     {weatherInfo?.name} {weatherInfo?.sys?.country}
-                  </h1>
-                  <h3>Description: {weatherInfo?.weather[0]?.description}</h3>
-                  <p>
-                     Temp: <Temp temp={weatherInfo?.main?.temp} />
-                  </p>
-                  <p>
-                     Feels Like: <Temp temp={weatherInfo?.main?.feels_like} />
-                  </p>
-                  <p>Humidity : {weatherInfo?.main?.humidity}% </p>
-               </section>
+               <article>
+                  <div className="info-country">
+                     <h2>
+                        {weatherInfo?.name} <br /> {weatherInfo?.sys?.country}
+                     </h2>
+                     <h3>{date}</h3>
+                  </div>
+                  <div className="infor-temp">
+                     <Temp temp={weatherInfo?.main?.temp} />
+                     <h3>
+                        Description: {weatherInfo?.weather[0]?.description}
+                     </h3>
+                  </div>
+
+                  <p>Wind Speed : {weatherInfo?.wind?.speed} mps </p>
+               </article>
             )
          )}
          {loadingWeather && <h2>Loading data, please wait...</h2>}
-      </div>
+      </section>
    );
 }
 export default Weather;

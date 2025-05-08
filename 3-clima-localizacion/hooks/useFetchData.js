@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { useWeatherAppContext } from "../context/GeoWeatherAppContext";
 
-function useFetchData(cityName) {
+function useFetchData(cityName, geoCoords) {
    const [weatherInfo, setWeatherInfo] = useState(null);
    const [loadingWeather, setLoadingWeather] = useState(false);
    const [error, setError] = useState(null);
-   const { geoCoords = "" } = useWeatherAppContext();
 
    useEffect(() => {
       if (cityName === "") return;
@@ -17,6 +15,7 @@ function useFetchData(cityName) {
       setError(null);
       try {
          let response = {};
+         console.log(geoCoords);
          if (geoCoords.lat && geoCoords.lon) {
             response = await fetch(
                `https://api.openweathermap.org/data/2.5/weather?lat=${geoCoords.lat}&lon=${geoCoords.lon}&appid=44d709fafb1c0ca7129796faaf418681`
