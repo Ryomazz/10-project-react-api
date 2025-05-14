@@ -3,6 +3,7 @@ import { audioFiles } from "./audioFiles";
 import "../src/assets/Cancion (1).mp3";
 
 function App() {
+   const [songs, setSongs] = useState(audioFiles);
    const [songIndex, setSongIndex] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
    const [progress, setProgress] = useState(0);
@@ -37,8 +38,10 @@ function App() {
       audioRef.current.currentTime = currentProgress;
    };
 
+   const handleVolumeUpdate = () => {};
+
    const handleNext = () => {
-      if (songIndex === audioFiles.length - 1) {
+      if (songIndex === songs.length - 1) {
          setSongIndex(0);
       } else {
          setSongIndex(songIndex + 1);
@@ -47,21 +50,40 @@ function App() {
 
    const handlePrev = () => {
       if (songIndex === 0) {
-         setSongIndex(audioFiles.length - 1);
+         setSongIndex(songs.length - 1);
       } else {
          setSongIndex(songIndex - 1);
       }
    };
 
+   const handleFavorite = () => {
+      const newSongs = songs.map((song) => {
+         if (song.url === songs[songIndex].url) {
+            console.log(song);
+            return {
+               ...song,
+               favorites: song?.favorites ? false : true,
+            };
+         } else {
+            return song;
+         }
+      });
+      setSongs(newSongs);
+   };
+
    return (
       <div className="audio-player">
          <audio
-            src={audioFiles[songIndex]?.url}
+            src={songs[songIndex]?.url}
             ref={audioRef}
             onTimeUpdate={handleTimeUpdate}
+            onVolumeChange={handleVolumeUpdate}
          />
          <article className="player-info">
-            <h2>{audioFiles[songIndex]?.name}</h2>
+            <h2>{songs[songIndex]?.name}</h2>
+            <button onClick={handleFavorite}>
+               {songs[songIndex].favorites ? "♥️" : "🤍"}
+            </button>
             <input
                type="range"
                value={progress || 0}
