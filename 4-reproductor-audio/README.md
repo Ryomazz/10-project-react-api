@@ -7,4 +7,7 @@
 ## Steps ✔️
 
 -  Crear un array con los nombres y direcciones de las canciones ✔️
--  Crear la primera interfaz
+-  Crear la primera interfaz ✔️
+-
+-  Crear las funciones para pasar a la siguiente y anterior canciones
+-  Arreglado el problema cuando
