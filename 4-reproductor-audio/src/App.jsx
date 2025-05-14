@@ -45,7 +45,13 @@ function App() {
       }
    };
 
-   const handlePrev = () => {};
+   const handlePrev = () => {
+      if (songIndex === 0) {
+         setSongIndex(audioFiles.length - 1);
+      } else {
+         setSongIndex(songIndex - 1);
+      }
+   };
 
    return (
       <div className="audio-player">
