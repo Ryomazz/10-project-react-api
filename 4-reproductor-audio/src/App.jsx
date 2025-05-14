@@ -7,11 +7,11 @@ function App() {
    const [songIndex, setSongIndex] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
    const [progress, setProgress] = useState(0);
+   const [volume, setVolume] = useState(100);
    const audioRef = useRef(null);
 
    useEffect(() => {
       setProgress(0);
-      audioRef.current.play();
       audioRef.current.currentTime = 0;
       console.log(progress);
    }, [songIndex]);
@@ -38,7 +38,14 @@ function App() {
       audioRef.current.currentTime = currentProgress;
    };
 
-   const handleVolumeUpdate = () => {};
+   const handleVolumeUpdate = () => {
+      setVolume(audioRef.current.volume * 100);
+   };
+
+   const handleVolumeChange = (e) => {
+      const currentVolume = e.target.value / 100;
+      audioRef.current.volume = currentVolume;
+   };
 
    const handleNext = () => {
       if (songIndex === songs.length - 1) {
@@ -91,6 +98,16 @@ function App() {
                max="100"
                onChange={handleProgress}
             />
+            <label htmlFor="">
+               Volume
+               <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={volume || 100}
+                  onChange={handleVolumeChange}
+               />
+            </label>
          </article>
          <article className="player-controls">
             <button onClick={handlePrev}>⏪</button>

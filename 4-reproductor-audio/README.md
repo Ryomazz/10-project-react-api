@@ -11,4 +11,4 @@
 -  Crear las funciones para pasar a la siguiente y anterior canciones ✔️
 -  Arreglado el problema del input range cuando cambiabas de cancion ✔️
 -  Agregar funcion para favoritos ✔️
--  Implementar funcion de bajar o subir volumen
+-  Implementar funcion de bajar o subir volumen ✔️
