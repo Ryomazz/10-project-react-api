@@ -12,3 +12,4 @@
 -  Arreglado el problema del input range cuando cambiabas de cancion ✔️
 -  Agregar funcion para favoritos ✔️
 -  Implementar funcion de bajar o subir volumen ✔️
+-  Implementar los estilos ✔️

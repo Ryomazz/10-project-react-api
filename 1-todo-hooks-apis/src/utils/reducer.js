@@ -41,9 +41,6 @@ const reducer = (state, action) => {
          newState[selectedTask],
          newState[previousTask],
       ];
-
-      console.log(newState);
-
       return newState;
    }
 };

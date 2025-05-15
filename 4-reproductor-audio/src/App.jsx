@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { audioFiles } from "./audioFiles";
-import "../src/assets/Cancion (1).mp3";
+import "../src/App.css";
 
 function App() {
    const [songs, setSongs] = useState(audioFiles);
@@ -12,6 +12,7 @@ function App() {
 
    useEffect(() => {
       setProgress(0);
+      audioRef.current.play();
       audioRef.current.currentTime = 0;
       console.log(progress);
    }, [songIndex]);
@@ -88,9 +89,7 @@ function App() {
          />
          <article className="player-info">
             <h2>{songs[songIndex]?.name}</h2>
-            <button onClick={handleFavorite}>
-               {songs[songIndex].favorites ? "♥️" : "🤍"}
-            </button>
+
             <input
                type="range"
                value={progress || 0}
@@ -98,16 +97,22 @@ function App() {
                max="100"
                onChange={handleProgress}
             />
-            <label htmlFor="">
-               Volume
-               <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={volume || 100}
-                  onChange={handleVolumeChange}
-               />
-            </label>
+
+            <div className="info-controls">
+               <button onClick={handleFavorite}>
+                  {songs[songIndex].favorites ? "♥️" : "🤍"}
+               </button>
+               <label htmlFor="">
+                  🔊
+                  <input
+                     type="range"
+                     min="0"
+                     max="100"
+                     value={volume || 100}
+                     onChange={handleVolumeChange}
+                  />
+               </label>
+            </div>
          </article>
          <article className="player-controls">
             <button onClick={handlePrev}>⏪</button>

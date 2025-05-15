@@ -1,0 +1,85 @@
+body {
+   background-color: cornflowerblue;
+   min-height: 100vh;
+   padding: 0;
+   margin: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+p {
+   padding: 0;
+   margin: 0;
+}
+button {
+   cursor: pointer;
+}
+
+.audio-player {
+   border: 1px solid #fefefe;
+   background-color: rgb(131, 168, 238);
+   padding: 1.5rem;
+   border-radius: 10px;
+   color: #fefefe;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+
+   & .player-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      & h2 {
+         font-size: 2.5rem;
+      }
+
+      & .info-controls {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         gap: 0.5rem;
+
+         & button {
+            background-color: transparent;
+            border: none;
+            font-size: 1rem;
+
+            &:active {
+               opacity: 0.7;
+            }
+
+            &:hover {
+               transform: scale(1.1);
+            }
+         }
+      }
+   }
+
+   & .player-controls {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+
+      & button {
+         font-size: 2rem;
+         background-color: transparent;
+         border: none;
+
+         &:active {
+            opacity: 0.7;
+         }
+
+         &:hover {
+            transform: scale(1.1);
+         }
+      }
+   }
+}
