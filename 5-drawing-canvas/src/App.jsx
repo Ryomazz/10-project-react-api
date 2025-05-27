@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useRef, useState } from "react";
+import { useCanvasContext } from "./AppContext";
+import ColorPicker from "./ColorPicker";
 function App() {
-  const [count, setCount] = useState(0)
+   const canvasRef = useRef(null);
+   const [isDrawing, setIsDrawing] = useState(false);
+   const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
+   const { color } = useCanvasContext();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+   const startDrawing = (e) => {
+      const rect = canvasRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      setIsDrawing(true);
+      setLastPos({ x, y });
+   };
+
+   const draw = (e) => {
+      if (!isDrawing) return;
+
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 10;
+      ctx.stroke();
+
+      setLastPos({ x, y });
+   };
+
+   const stopDrawing = () => {
+      setIsDrawing(false);
+   };
+
+   return (
+      <section>
+         <h1>Canva Draw App</h1>
+         <canvas
+            ref={canvasRef}
+            className="canvas"
+            width={500}
+            height={500}
+            onMouseDown={startDrawing}
+            onMouseMove={draw}
+            onMouseUp={stopDrawing}
+            onMouseOut={stopDrawing}
+         ></canvas>
+         <ColorPicker></ColorPicker>
+      </section>
+   );
 }
-
-export default App
+export default App;
