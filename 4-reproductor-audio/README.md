@@ -13,3 +13,4 @@
 -  Agregar funcion para favoritos ✔️
 -  Implementar funcion de bajar o subir volumen ✔️
 -  Implementar los estilos ✔️
+-  Implementar reducer para controlar el estado
