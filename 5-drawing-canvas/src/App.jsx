@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { useCanvasContext } from "./AppContext";
 import ColorPicker from "./ColorPicker";
 import LineWidthPicker from "./LineWidthPicker";
+import ClearButton from "./ClearButton";
+import DownloadDraw from "./DownloadDraw";
 function App() {
    const canvasRef = useRef(null);
    const [isDrawing, setIsDrawing] = useState(false);
@@ -53,8 +55,10 @@ function App() {
             onMouseUp={stopDrawing}
             onMouseOut={stopDrawing}
          ></canvas>
+         <ClearButton canvasRef={canvasRef} />
          <ColorPicker />
          <LineWidthPicker />
+         {canvasRef && <DownloadDraw canvasRef={canvasRef} />}
       </section>
    );
 }

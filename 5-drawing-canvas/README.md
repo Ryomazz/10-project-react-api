@@ -11,4 +11,5 @@
 -  Implement a context ✔️
 -  Implement a color picker system ✔️
 -  Implement a line width picker system ✔️
--  Implement a line width picker system ✔️
+-  Implement a clear all button ✔️
+-  Implement a download like image the draw
