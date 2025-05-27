@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import { useCanvasContext } from "./AppContext";
 import ColorPicker from "./ColorPicker";
+import LineWidthPicker from "./LineWidthPicker";
 function App() {
    const canvasRef = useRef(null);
    const [isDrawing, setIsDrawing] = useState(false);
    const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
-   const { color } = useCanvasContext();
+   const { color, lineWidth } = useCanvasContext();
 
    const startDrawing = (e) => {
       const rect = canvasRef.current.getBoundingClientRect();
@@ -29,7 +30,7 @@ function App() {
       ctx.moveTo(lastPos.x, lastPos.y);
       ctx.lineTo(x, y);
       ctx.strokeStyle = color;
-      ctx.lineWidth = 10;
+      ctx.lineWidth = lineWidth;
       ctx.stroke();
 
       setLastPos({ x, y });
@@ -52,7 +53,8 @@ function App() {
             onMouseUp={stopDrawing}
             onMouseOut={stopDrawing}
          ></canvas>
-         <ColorPicker></ColorPicker>
+         <ColorPicker />
+         <LineWidthPicker />
       </section>
    );
 }

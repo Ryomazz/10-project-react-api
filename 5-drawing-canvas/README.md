@@ -10,4 +10,5 @@
 -  Making functional ✔️
 -  Implement a context ✔️
 -  Implement a color picker system ✔️
--  Implement a line width picker system
+-  Implement a line width picker system ✔️
+-  Implement a line width picker system ✔️

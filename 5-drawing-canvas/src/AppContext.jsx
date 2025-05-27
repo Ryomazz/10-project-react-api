@@ -4,9 +4,12 @@ const CanvasContext = createContext();
 export const useCanvasContext = () => useContext(CanvasContext);
 
 function AppContext({ children }) {
-   const [color, setColor] = useState();
+   const [color, setColor] = useState("black");
+   const [lineWidth, setLineWidth] = useState(5);
    return (
-      <CanvasContext.Provider value={{ color, setColor }}>
+      <CanvasContext.Provider
+         value={{ color, setColor, lineWidth, setLineWidth }}
+      >
          {children}
       </CanvasContext.Provider>
    );
