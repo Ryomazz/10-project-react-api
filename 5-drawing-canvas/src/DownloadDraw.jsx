@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 function DownloadDraw({ canvasRef }) {
    const canvas = canvasRef.current || "";
    const dataURL = canvas ? canvas.toDataURL("image/jpeg", 1.0) : "";
